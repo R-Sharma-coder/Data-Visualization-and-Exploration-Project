@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+    <h2>Pie Chart</h2>
+    <svg width="600" height="500"></svg> <!--Step 2-->
+    <script>
+      var svg = d3.select("svg"),
+            width = svg.attr("width"),
+            height = svg.attr("height"),
+            radius = 200;
+        // Step 1   
+        url = "https://raw.githubusercontent.com/Ruchira-Sharma/Data-Visualization-and-Exploration-Project/main/dataset/FinancialInformation.csv?token=GHSAT0AAAAAABRDW5A5HINWRGJPKDNFXEDIYTJS7UQ";
+     
+        d3.csv(url, function(error,csv_data) {
+          var data = d3.nest()
+        .key(function(d) {  return d.Sector;})
+        .rollup(function(d) { 
+        
+        return d3.sum(d, function(g) {
+          //console.log(g.MarketCap)
+          //return g.MarketCap;
+          var len = g.MarketCap.length 
+//parseInt(g.MarketCap.trim().slice(1,len).replace(/,/g,""))
+          return parseInt(g.MarketCap.trim().replace("$","").replace(/,/g,"")); 
+        
+        });
+        }).entries(csv_data);
+        
+        // Reference https://stackoverflow.com/questions/70603481/how-do-i-split-labels-for-my-donut-chart-to-multiple-lines-using-d3-js
+      function lineBreak(text, width) {
+        text.each(function () {
+          var el = d3.select(this);
+          let words = el.text().split(' ');
+          let wordsFormatted = [];
+
+          let string = '';
+          for (let i = 0; i < words.length; i++) {
+            if (words[i].length + string.length <= width) {
+              string = string + words[i] + ' ';
+            }
+            else {
+              wordsFormatted.push(string);
+              string = words[i] + ' ';
+            }
+          }
+          wordsFormatted.push(string);
+
+          el.text('');
+          for (var i = 0; i < wordsFormatted.length; i++) {
+            var tspan = el.append('tspan').text(wordsFormatted[i]);
+            if (i > 0)
+              tspan.attr('x', 0).attr('dy', '15');
+          }
+        });
+      }
+
+      
+        /*var data = [{name: "Alex", share: 20.70}, 
+                    {name: "Shelly", share: 30.92},
+                    {name: "Clark", share: 15.42},
+                    {name: "Matt", share: 13.65},
+                    {name: "Jolene", share: 19.31}];
+        */
+
+        var g = svg.append("g")
+                   .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+     // Step 4
+        var ordScale = d3.scaleOrdinal()
+                        	.domain(data)
+                        	.range(['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
+        var fontScale = d3.scaleOrdinal()
+                          .domain(data)
+                          .range([10,15,20,25,30]);
+
+        // Step 5
+        var pie = d3.pie().value(function(d) { 
+                return d.value; 
+            });
+
+            var arcHover = d3.arc()
+                          .innerRadius(0)
+                          .outerRadius(220);
+        var arc = g.selectAll("arc")
+                   .data(pie(data))
+                   .enter();
+                  
+                   
+
+
+        // Step 6
+        var path = d3.arc()
+                     .outerRadius(radius)
+                     .innerRadius(0);
+
+        arc.append("path")
+           .attr("d", path)
+           .attr("fill", function(d) {  return ordScale(d.data.key); })
+          .on("mouseover", function(d) {
+            console.log("hi");
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arcHover);
+      });
+
+           
+
+        // Step 7
+        var label = d3.arc()
+                      .outerRadius(radius)
+                      .innerRadius(0);
+        
+            
+        arc.append("text")
+           .attr("transform", function(d) { 
+             if (d.data.key=="Telecommunication and Semiconductor Industry") {
+               //posnAngle = ((d.startAngle + d.endAngle)/2)*(180/Math.PI)
+               changedVal = label.centroid(d)
+               changedVal[0] = label.centroid(d)[0]
+               changedVal[1] = label.centroid(d)[1]-30
+               return "translate(" + changedVal + ") rotate(80)";
+             }
+             else if (d.data.key=="Banking Services") {
+              return "translate(" + label.centroid(d) + ") rotate(60)";
+             }
+
+             return "translate(" + label.centroid(d) + ")"; 
+            })
+           .text(function(d) { return d.data.key; })
+           .style("font-size",15)
+          
+           .attr("text-anchor", "middle")
+           .call(lineBreak, 25);
+
+
+           //.style("font-family", "arial")
+           //.style("font-size", function(d) {return fontScale(d.data.key)});
+        });
+    </script>
+</body>
+</html>
