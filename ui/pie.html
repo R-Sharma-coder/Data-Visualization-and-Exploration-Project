@@ -4,7 +4,7 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
-    <h2>Pie Chart</h2>
+    <h4>Sector Wise - Market Cap. Distribution</h4>
     <svg width="600" height="500"></svg> <!--Step 2-->
     <script>
       var svg = d3.select("svg"),
@@ -12,7 +12,7 @@
             height = svg.attr("height"),
             radius = 200;
         // Step 1   
-        url = "https://raw.githubusercontent.com/Ruchira-Sharma/Data-Visualization-and-Exploration-Project/main/dataset/FinancialInformation.csv?token=GHSAT0AAAAAABRDW5A5HINWRGJPKDNFXEDIYTJS7UQ";
+        url = "https://raw.githubusercontent.com/nirvana1707/DataVisualizationTest/main/FinancialInformation.csv";
      
         d3.csv(url, function(error,csv_data) {
           var data = d3.nest()

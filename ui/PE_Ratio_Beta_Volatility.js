@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 60, bottom: 60, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    width = 360 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("body")
@@ -31,7 +31,7 @@ var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("position","relative")				
     .style("opacity", 0)
-    //.style("max-width","200px")
+    .style("max-width","200px")
   
   // Add X axis
   var x = d3.scaleLinear()

@@ -11,8 +11,8 @@
     </style>
 </head>
 <body>
-
-<script src="https://d3js.org/d3.v4.min.js"></script>
+  <h4>Company wise - Outstanding Shares</h4>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <script>
  
  /*var tooltip = d3.select("body")
@@ -44,7 +44,7 @@ var svg = d3.select("body")
     .attr("height", diameter)
     .attr("class", "bubble");
 
-d3.csv("https://raw.githubusercontent.com/nirvana1707/DataVisualizationTest/main/FinancialInformation.csv", function(data,error) {
+d3.csv("https://raw.githubusercontent.com/sirisha-annamraju/Test/main/FinancialInformation-Sirisha.csv").then(function(data){
 
   var data1 = d3.nest()
         .key(function(d) {  return d.CompanyName;})
@@ -57,7 +57,7 @@ d3.csv("https://raw.githubusercontent.com/nirvana1707/DataVisualizationTest/main
         console.log(data);
 
     //convert numerical values from strings to numbers
-    data = data.map(function(d){ d.value = +d["Employees"]; return d; });
+    data = data.map(function(d){ d.value = +d["OutstandingShares"]; return d; });
 
 
     
@@ -88,7 +88,7 @@ console.log(root.leaves())
             div.transition()		
                 .duration(200)		
                 .style("opacity", .9);		
-            div	.html(d.data["Symbol"] + "<br/>"  + d.data["CompanyName"])	
+            div	.html(d.data["Symbol"] + "<br/>"  + d.data["CompanyName"] + "with outstanding shares = "+d.data["OutstandingShares"]/1000000 +"Mn")	
                 .style("left", (d.x0) + "px")		
                 .style("top", (d.y0) + "px");	
                 //d3.event.pageY

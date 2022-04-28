@@ -5,8 +5,8 @@ const h = 500;
 const margins = { top: 50, left: 100, bottom: 100, right: 100 }
 const innerWidth = w - margins.left - margins.right;
 const innerHeight = h - margins.top - margins.bottom;
-
-const url = "https://raw.githubusercontent.com/Ruchira-Sharma/Test_Repository/main/Financial_Information.csv";
+const url = "https://raw.githubusercontent.com/nirvana1707/DataVisualizationTest/main/Financial_Information_Ruchira.csv"
+//const url = "https://raw.githubusercontent.com/Ruchira-Sharma/Test_Repository/main/Financial_Information.csv";
 
 d3.csv(url, function(error, data) {
   
@@ -18,7 +18,7 @@ d3.csv(url, function(error, data) {
   // Create a select dropdown
   const mySelection = document.getElementById("companyWiseSelectMe");
 
-  d3.select(mySelection).append("span").append("p").attr("class", "label").text("How should these bars sorted?").style("font-weight", "bold").style("color", "red").style("font-size", "25px");
+  d3.select(mySelection).append("span").append("p").attr("class", "label").text("Price to Earnings Ratio Analysis").style("font-weight", "bold").style("color", "black").style("font-size", "18px");
 
   const selectItems = ["Alphabetically", "Ascendingly", "Descendingly"];
 
@@ -66,7 +66,7 @@ d3.csv(url, function(error, data) {
     const xScale = d3.scaleBand()
     .domain(data.map((d) => d.Symbol))
     .rangeRound([0, innerWidth])
-    .paddingInner(100);
+    .padding(0.25);
 
     const yScale = d3.scaleLinear()
       .domain([0,d3.max(data, d => d.PE_Ratio)]).nice()
@@ -117,16 +117,28 @@ d3.csv(url, function(error, data) {
          .duration(500)
          .style("opacity", 0);
        });
-
+// Add x axis label
     mainG
       .append("g")
       .call(xAxis)
       .attr("transform", `translate(0, ${innerHeight})`);
+      svg.append("text")             
+      .attr("x", 480 )
+      .attr("y",  475 )
+      .style("text-anchor", "middle")
+      .text("Company Name");
 
     mainG
       .append("g")
       .call(yAxis);
-
+      // Add y axis
+      mainG.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -60)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("P/E Ratio"); 
     // This code will redraw charts based on dropdown selection. At any point in time, chartContainer DIV only contains one chart. The charts are recycled.
     const showChart = document.getElementById("chartContainer");
     while (showChart.firstChild) {
@@ -140,10 +152,10 @@ d3.csv(url, function(error, data) {
 // Company Selection END 
 // Sectorwise Selection Start
 var svg = d3.select("svg"),
-    margin = {top: 100, right: 20, bottom: 300, left: 30},
+    margin = {top: 100, right: 20, bottom: 500, left: 50},
     width = svg.attr("width") - margin.left - margin.right,
-    height =  svg.attr("height") - margin.top - margin.bottom;
-
+    height =  svg.attr("height") -margin.bottom ;
+console.log(height)
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 var x = d3.scaleBand().rangeRound([0, width]).padding(0.25),
@@ -155,10 +167,11 @@ var colours = d3.scaleOrdinal()
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("https://raw.githubusercontent.com/Ruchira-Sharma/Test_Repository/main/Financial%20Information%20Edited%20Sector%20Wise%20PE%20Ratio.csv", function(error, data) {
+d3.csv(url, function(error, data) {
+//d3.csv("https://raw.githubusercontent.com/Ruchira-Sharma/Test_Repository/main/Financial%20Information%20Edited%20Sector%20Wise%20PE%20Ratio.csv", function(error, data) {
 
     x.domain(data.map(function(d) { return d.Sector; }));
-    y.domain([0, 150]);
+    y.domain([0, 240]);
 
     g.append("g")
         .attr("class", "axis axis--x")
@@ -169,13 +182,20 @@ d3.csv("https://raw.githubusercontent.com/Ruchira-Sharma/Test_Repository/main/Fi
       .attr("dx", "-.8em")
       .attr("dy", ".15em")
       .attr("transform", "rotate(-65)");
+    // adding lable to X axis
+      svg.append("text")             
+      .attr("x", 480 )
+      .attr("y",  600 )
+      .style("text-anchor", "middle")
+      .text("Sector wise");
+    
 
     g.append("g")
       	.attr("class", "axis axis--y")
       	.call(d3.axisLeft(y).ticks(10).tickFormat(function(d) { return d ; }).tickSizeInner([-width]))
       .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 6)
+        .attr("y", -30)
         .attr("dy", "0.71em")
         .attr("text-anchor", "end")
         .attr("fill", "#5D6971")
@@ -194,9 +214,12 @@ d3.csv("https://raw.githubusercontent.com/Ruchira-Sharma/Test_Repository/main/Fi
               .style("left", d3.event.pageX - 50 + "px")
               .style("top", d3.event.pageY - 70 + "px")
               .style("display", "inline-block")
-              .html((d.Sector) + "<br>"  + (d.PE_Ratio));
+              .text((d.Sector) + " " +(d.PE_Ratio))
+              .duration(200);
         })
-    		.on("mouseout", function(d){ tooltip.style("display", "none");});
+    		.on("mouseout", function(d){ tooltip.style("display", "none");
+      tooltip.duration(500)
+    });
     });
 
 
