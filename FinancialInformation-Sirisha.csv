@@ -1,0 +1,31 @@
+﻿CompanyName,Symbol,Sector,Sector1,MarketCap,PE,Beta,Employees,OutstandingShares,Institutional_Holding_perc,Retail_Holding_perc
+APPLE INC.,AAPL,Computer & Software,"Computers, Phones & Household Electronics","$2,663,332,608,000 ",27.1,1.19,154000,16319440000,59.51,40.49
+MICROSOFT CORP.,MSFT,Computer & Software,Software & IT Services,"$2,211,200,626,700 ",31.38,0.91,181000,7496866000,71.99,28.01
+UNITEDHEALTH GROUP INCORPORATED,UNH,"Housing, Healthcare, Food & Drugs",Healthcare Providers & Services,"$448,103,244,000 ",26.34,0.87,350000,940899200,89.59,10.41
+VISA INC.,V,Computer & Software,Software & IT Services,"$438,171,848,490 ",39,0.92,21500,2096817000,96.07,3.93
+JOHNSON & JOHNSON,JNJ,"Housing, Healthcare, Food & Drugs",Pharmaceuticals,"$431,199,952,000 ",20.99,0.71,141700,2629268000,70.39,29.61
+JPMORGAN CHASE & CO.,JPM,Banking Services,Banking Services,"$402,910,788,049 ",8.89,1.11,271025,2952809000,71.88,28.12
+WALMART INC.,WMT,"Housing, Healthcare, Food & Drugs",Food & Drug Retailing,"$377,219,669,220 ",27.89,0.54,2300000,2773878000,32.14,67.86
+THE PROCTER & GAMBLE COMPANY,PG,"Housing, Healthcare, Food & Drugs",Personal & Household Products & Services,"$367,494,188,460 ",27.09,0.45,101000,2397066000,66.17,33.83
+"THE HOME DEPOT, INC.",HD,"Housing, Healthcare, Food & Drugs",Specialty Retailers,"$334,417,539,750 ",20.64,1.06,504800,1044239000,71.72,28.28
+CHEVRON CORPORATION,CVX,Others,Oil & Gas,"$291,587,635,160 ",18.41,1.12,42595,1947553000,67.47,32.53
+THE WALT DISNEY COMPANY,DIS,Others,Media & Publishing,"$270,291,300,000 ",84.68,1.17,190000,1820633000,66,34
+THE COCA-COLA COMPANY,KO,"Housing, Healthcare, Food & Drugs",Beverages,"$268,669,261,810 ",27.48,0.66,80300,4335473000,70.52,29.48
+"CISCO SYSTEMS, INC.",CSCO,Telecommunication and Semiconductor Industry,Communications & Networking,"$226,900,656,160 ",19.53,0.95,79500,4154168000,75.8,24.2
+VERIZON COMMUNICATIONS INC.,VZ,Telecommunication and Semiconductor Industry,Telecommunications Services,"$225,045,344,640 ",10.08,0.38,118400,4197824000,65.53,34.47
+"NIKE, INC.",NKE,"Housing, Healthcare, Food & Drugs",Textiles & Apparel,"$209,142,076,700 ",34.64,0.97,73300,1581295000,83.55,16.45
+"SALESFORCE.COM, INC.",CRM,Computer & Software,Software & IT Services,"$205,756,650,000 ",139.15,1.1,56606,985000000,80.01,19.99
+"MERCK & CO., INC.",MRK,"Housing, Healthcare, Food & Drugs",Pharmaceuticals,"$193,573,800,000 ",15.69,0.46,68000,2527734000,75.14,24.86
+INTEL CORPORATION,INTC,Telecommunication and Semiconductor Industry,Semiconductors & Semiconductor Equipment,"$190,604,220,000 ",9.64,0.55,121100,4071000000,64.92,35.08
+MCDONALD'S CORPORATION,MCD,"Housing, Healthcare, Food & Drugs",Hotels & Entertainment Services,"$178,185,201,661 ",23.88,0.61,200000,743584700,69.72,30.28
+AMERICAN EXPRESS COMPANY,AXP,Banking Services,Banking Services,"$135,203,157,750 ",17.82,1.11,64000,759355000,86.97,13.03
+HONEYWELL INTERNATIONAL INC.,HON,Others,Consumer Goods Conglomerates,"$125,916,331,680 ",23.2,1.13,99000,685818800,75.73,24.27
+AMGEN INC.,AMGN,"Housing, Healthcare, Food & Drugs",Pharmaceuticals,"$125,448,591,174 ",21.84,0.59,24200,557029400,77.93,22.07
+"THE GOLDMAN SACHS GROUP, INC.",GS,Banking Services,Investment Banking & Investment Services,"$115,329,700,000 ",5.53,1.48,43900,337923000,72.95,27.05
+THE BOEING COMPANY,BA,Others,Aerospace & Defense,"$113,574,191,038 ",0,1.43,142000,582999800,55.17,44.83
+INTERNATIONAL BUSINESS MACHINES CORPORATION,IBM,Computer & Software,Software & IT Services,"$109,131,268,500 ",18.69,1.09,307600,899310000,57.34,42.66
+CATERPILLAR INC.,CAT,Others,"Machinery, Equipment & Components","$97,976,421,323 ",15.53,0.92,107700,535888100,69.01,30.99
+3M COMPANY,MMM,Others,Consumer Goods Conglomerates,"$82,666,725,000 ",14.31,0.97,95000,571100000,68.47,31.53
+DOW INC.,DOW,"Housing, Healthcare, Food & Drugs",Chemicals,"$42,025,880,064 ",6.81,1.32,35700,735747200,67,33
+THE TRAVELERS COMPANIES INC.,TRV,Others,Insurance,"$40,528,647,474 ",11.55,0.7,30800,241500700,84.8,15.2
+"WALGREENS BOOTS ALLIANCE, INC.",WBA,"Housing, Healthcare, Food & Drugs",Food & Drug Retailing,"$38,855,872,720 ",6.54,0.56,202000,863272000,59.09,40.91
