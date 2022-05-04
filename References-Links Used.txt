@@ -1,0 +1,33 @@
+https://rpruim.github.io/D3/notes/setting-up-your-working-environment.html
+https://www.freecodecamp.org/news/develop-deploy-first-fullstack-web-app/#creatingyourfirstserver
+https://getbootstrap.com/docs/4.4/layout/overview/
+https://www.w3schools.com/css/css3_flexbox.asp
+https://www.w3schools.com/css/tryit.asp?filename=trycss3_flexbox
+https://www.codegrepper.com/code-examples/html/rectangle+behind+text+html
+https://www.codegrepper.com/code-examples/html/rectangle+behind+text+html
+https://www.w3schools.com/css/css_font_size.asp
+
+2 charts side by side : 
+https://bl.ocks.org/d3noob/5987480
+
+http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html
+
+
+https://www.codeproject.com/Questions/5256131/How-to-create-iframes-side-by-side-using-bootstrap#:~:text=If%20you%20want%20them%20to%20be%20shown%20side-by-side,iframes%20side-by-side.%20Grid%20system%20%C2%B7%20Bootstrap%20%5B%20%5E%5D
+
+https://www.educba.com/sentence-case-in-excel/
+https://www.w3docs.com/snippets/css/how-to-create-a-fixed-navbar-with-css.html
+
+Coding :
+https://bl.ocks.org/jalapic/acb4b8b6523e73394c86
+https://www.bing.com/search?q=heading%20rectangle%20&qs=n&form=QBRE&=Search%20%7B0%7D%20for%20%7B1%7D&=Search%20work%20for%20%7B0%7D&=%25eManage%20Your%20Search%20History%25E&msbsrank=6_6__0&sp=-1&pq=heading%20rectangle%20&sc=6-18&sk=&cvid=E88C017825B84136B04DD41CB5EF0858&ntref=1
+https://stackoverflow.com/questions/20690408/how-to-draw-a-rectangle-in-html-or-css
+
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_iframe_frameborder_css
+http://www.d3noob.org/2016/10/adding-axis-labels-in-d3js-v4.html
+https://jsfiddle.net/matehu/w7h81xz2/
+https://localcoder.org/adding-tooltip-to-bar-chart-generated-using-svg-path
+https://www.demo2s.com/javascript/javascript-d3-js-bar-chart-sorting-axis-label-sorting-logic-explanatio.html
+https://d3-graph-gallery.com/graph/interactivity_tooltip.html
+https://bl.ocks.org/d3noob/180287b6623496dbb5ac4b048813af52
+https://bl.ocks.org/boeric/cbb5b416091e74c70b8480e68b6d21e1
