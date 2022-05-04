@@ -1,4 +1,4 @@
-d3.csv("https://raw.githubusercontent.com/nirvana1707/DataVisualizationTest/main/Financial_Information_csv.csv", function(error, dataset) {
+d3.csv("https://raw.githubusercontent.com/nirvana1707/DataVisualizationTest/main/FinancialInformation.csv", function(error, dataset) {
   if (error) throw error;
 
   var cols = ["PE","Beta","Institutional_Holding_perc", "Retail_Holding_perc"]

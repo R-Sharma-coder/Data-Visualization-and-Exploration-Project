@@ -1,6 +1,7 @@
 var fileName = "https://raw.githubusercontent.com/nirvana1707/DataVisualizationTest/main/FinancialInformation.csv"
 
 d3.csv(fileName, function(row) {
+    var format2d = d3.format(".2f")  
     console.log(row)
     var dataset = {};
     var sectorNames = new Set();
@@ -113,7 +114,7 @@ d3.csv(fileName, function(row) {
 
     
 var sectors = [...sectorNames]
-var diameter = 600;
+var diameter = 400;
 //["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#bcbd22","#17becf"]
 var div = d3.select("body").append("div")	
     .attr("class", "tooltip")
@@ -135,48 +136,12 @@ var svg = d3.select("body")
     .attr("class", "bubble");
 //svg1
 // Add X axis --> it is a date format
-var margin1 = {top: 10, right: 100, bottom: 30, left: 30},
+var margin1 = {top: 10, right: 30, bottom: 30, left: 30},
     width1 = 600 - margin1.left - margin1.right,
-    height1 = 600 - margin1.top - margin1.bottom;
+    height1 = 400 - margin1.top - margin1.bottom;
 
-// append the svg object to the body of the page
-// var svg1=d3.select('body')
-//     .append('svg')
-    
-//     .attr('height', 600)
-//     .attr('width', 600)
-// var rect1 = svg1.append('rect')
-//     .attr("class","second")
-//     .attr('fill', 'red')
-//     .attr('height', 100)
-//     .attr('width', 100)
-    
-
-// var text1 = svg1
-//     .append("text")
-//     .attr("class","recttext")
-//     .text("not selected")
-//     .style("stroke","black")
-//     .style("fill","black")
-//     .attr("dy","2em")
-// data1 = [
-//     {'time': '2017', 'AAPL': '2', 'MSFT': '5', 'V': '13'},
-//     {'time': '2018', 'AAPL': '3', 'MSFT': '4', 'V': '14'},
-//     {'time': '2019', 'AAPL': '1', 'MSFT': '4', 'V': '16'},
-//     {'time': '2020', 'AAPL': '7', 'MSFT': '4', 'V': '12'},
-//     {'time': '2021', 'AAPL': '8', 'MSFT': '8', 'V': '7'},
-//     {'time': '2022', 'AAPL': '8', 'MSFT': '13', 'V': '9'}
-//   ]
   data1 = dataset1
-//   data2 = [
-//     {'time': '2017', 'Sector1': '20', 'Sector2': '15', 'Sector3': '30'},
-//     {'time': '2018', 'Sector1': '30', 'Sector2': '14', 'Sector3': '40'},
-//     {'time': '2019', 'Sector1': '10', 'Sector2': '14', 'Sector3': '20'},
-//     {'time': '2020', 'Sector1': '17', 'Sector2': '14', 'Sector3': '30'},
-//     {'time': '2021', 'Sector1': '18', 'Sector2': '18', 'Sector3': '20'},
-//     {'time': '2022', 'Sector1': '18', 'Sector2': '30', 'Sector3': '30'}
-//   ]
-data2 = dataset2
+  data2 = dataset2
 //sectorMap = {"AAPL":"Sector1","MSFT":"Sector2", "V":"Sector3"}
 console.log(sectorMap)
 colorMap = {"C":"#1f77b4", "H":"#ff7f0e", "B": "#2ca02c", "T":"#9467bd","O":"#d62728"}
@@ -219,6 +184,7 @@ var line1 = svg1
   .style("stroke-width", 4)
   .style("fill", "none")
 
+
 var line1Text = svg1
 .append('g')
 .selectAll("text")
@@ -226,9 +192,28 @@ var line1Text = svg1
 .enter()
 .append("text")
 .attr("class","line1Text")
-.text(function(d) { return d.V})
+.text(function(d) { 
+    
+    return format2d(d.V)+"Mn"
+})
 .attr("x",function(d) {return x1(+d.time)})
-.attr("y",function(d) {return y1(+d.V)})  
+.attr("y",function(d) {return y1(+d.V)-5})  
+.style("font-size","10")
+
+var line2Text = svg1
+.append('g')
+.selectAll("text")
+.data(data2)
+.enter()
+.append("text")
+.attr("class","line2Text")
+.text(function(d) { 
+    
+    return format2d(d.C)+"Mn"
+})
+.attr("x",function(d) {return x1(+d.time)})
+.attr("y",function(d) {return y1(+d.C)+5})  
+.style("font-size","10")
 
   var line2 = svg1
   .append('g')
@@ -271,12 +256,13 @@ function update(selectedValue) {
         .data(dataFilter1)
         .transition()
         .duration(1000)
-        .text(function(d) { return d.value})
-        .attr("x",function(d) {
-            console.log("hi")
-            console.log(x1(+d.time))
+        .text(function(d) { 
+    
+            return format2d(d.value)+"Mn"
+        })
+        .attr("x",function(d) {            
             return x1(+d.time)})
-        .attr("y",function(d) {return y1(+d.value)}) 
+        .attr("y",function(d) {return y1(+d.value)-5}) 
 
     line2
         .datum(dataFilter2)
@@ -290,14 +276,18 @@ function update(selectedValue) {
             return selectedColor
             // return myColor(selectedGroup) 
         })
-    // text1
-    // .datum(selectedValue)
-    // .transition()
-    // .duration(1000)
-    // .text(function(d){
-    //     console.log("hi"+d);
-    //     return d;
-    // })
+    line2Text
+        .data(dataFilter2)
+        .transition()
+        .duration(1000)
+        .text(function(d) { 
+    
+            return format2d(d.value)+"Mn"
+        })
+        .attr("x",function(d) {            
+            return x1(+d.time)})
+        .attr("y",function(d) {return y1(+d.value)+5}) 
+    
 }
     
 
@@ -322,7 +312,7 @@ var node = svg.selectAll(".node")
 
 node.append("title")
     .text(function(d) {
-        return d.data.Name + "has a total market capitalization of " + d.data.Count/1000000 + "$Mn";
+        return "Company Name: "+d.data.Name+" Market Cap: "+format2d(d.data.Count/1000000)+"Mn$ (please click on the node)";
     });
 
 node.append("circle")
@@ -347,7 +337,7 @@ node.append("text")
     })
     .attr("font-family", "sans-serif")
     .attr("font-size", function(d){
-        return d.r/6;
+        return d.r/7;
     })
     .attr("fill", "white");
 
@@ -355,11 +345,11 @@ node.append("text")
     .attr("dy", "1.3em")
     .style("text-anchor", "middle")
     .text(function(d) {
-        return d.data.Count;
+        return format2d(d.data.Count/1000000) +"Mn $";
     })
     .attr("font-family",  "Gill Sans", "Gill Sans MT")
     .attr("font-size", function(d){
-        return d.r/5;
+        return d.r/7;
     })
     .attr("fill", "white");
  d3.selectAll(".node").on("click", function(d){

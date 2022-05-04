@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tree Map</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    /* custom css styles will go here */
+
+    </style>
+</head>
+<body>
+  <h4>Company wise - Outstanding Shares</h4>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+ 
+ /*var tooltip = d3.select("body")
+  .append("div")
+  .style("position", "relative")
+  .style("visibility", "hidden")
+  .style("color", "white")
+  .style("background-color", "black")
+  .style("padding", "8px")
+  .text("tooltip");
+  */
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")
+    .attr("position","relative")				
+    .style("opacity", 0);
+
+var diameter = 500, //max size of the bubbles
+    format   = d3.format(",d"),
+    color    = d3.scaleOrdinal(d3.schemeCategory10);
+    //more color options: https://github.com/d3/d3-scale-chromatic
+
+var bubble = d3.pack()
+    .size([diameter, diameter])
+    .padding(1.5);
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
+
+d3.csv("https://raw.githubusercontent.com/sirisha-annamraju/Test/main/FinancialInformation-Sirisha.csv").then(function(data){
+
+  var data1 = d3.nest()
+        .key(function(d) {  return d.CompanyName;})
+        .rollup(function(d) { 
+        
+        return d3.sum(d, function(g) {
+          //console.log(g.MarketCap)
+          return g.MarketCap; });
+        }).entries(data);
+        console.log(data);
+
+    //convert numerical values from strings to numbers
+    data = data.map(function(d){ d.value = +d["OutstandingShares"]; return d; });
+
+
+    
+    //Sets up a hierarchy of data object
+    var root = d3.hierarchy({children:data})
+      .sum(function(d) { return d.value; })
+      .sort(function(a, b) { return b.value - a.value; });
+
+      d3.treemap()
+    .size([490,510])
+    .padding(5)
+    (root)
+
+console.log(root.leaves())
+  // use this information to add rectangles:
+  svg
+    .selectAll("rect")
+    .data(root.leaves())
+    .enter()
+    .append("rect")
+      .attr('x', function (d) { return d.x0; })
+      .attr('y', function (d) { return d.y0; })
+      .attr('width', function (d) { return d.x1 - d.x0; })
+      .attr('height', function (d) { return d.y1 - d.y0; })
+      .style("stroke", "black")
+      .style("fill", "#69b3a2")
+      .on("mouseover", function(d) {		
+            div.transition()		
+                .duration(200)		
+                .style("opacity", .9);		
+            div	.html(d.data["Symbol"] + "<br/>"  + d.data["CompanyName"] + "with outstanding shares = "+d.data["OutstandingShares"]/1000000 +"Mn")	
+                .style("left", (d.x0) + "px")		
+                .style("top", (d.y0) + "px");	
+                //d3.event.pageY
+            })					
+      .on("mouseout", function(d) {		
+            div.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        })
+
+      .append("title",function(d) {
+        //console.log(d.data["Symbol"]);
+        return d.data["Symbol"]; });
+      
+      
+//word
+
+function fontSize(d,i) {
+var size = d.dx/5;
+var words = d.data.split(' ');
+var word = words[0];
+var width = d.dx;
+var height = d.dy;
+var length = 0;
+d3.select(this).style("font-size", size + "px").text(word);
+while(((this.getBBox().width >= width) || (this.getBBox().height >= height)) && (size > 12))
+ {
+  size--;
+  d3.select(this).style("font-size", size + "px");
+  this.firstChild.data = word;
+ }
+}
+
+  // and to add the text labels
+  svg
+    .selectAll("text")
+    .data(root.leaves())
+    .enter()
+    .append("text")
+      .attr("x", function(d){ return d.x0+14})    // +10 to adjust position (more right)
+      .attr("y", function(d){ return d.y0+10})    // +20 to adjust position (lower)
+      .text(function(d) {
+        console.log(d.data["Symbol"]);
+        return d.data["Symbol"]; })
+      .attr("font-size", "10px")
+      .attr("fill", "Black")
+      .attr("text-anchor", "middle") // set anchor y justification
+      .call(wrap,15)
+
+      function wrap(text, width) {
+    text.each(function() {
+        var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0, //<-- 0!
+        lineHeight = 1.2, // ems
+        x = text.attr("x"), //<-- include the x!
+        y = text.attr("y"),
+        dy = text.attr("dy") ? text.attr("dy") : 0; //<-- null check
+        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+            }
+        }
+    });
+}
+
+});
+
+
+
+
+
+
+</script>
+</body>
+</html>
