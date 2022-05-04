@@ -17,8 +17,11 @@ How to run:
 1. Please browse to the folder src/ui/ and click on Dashboard01.html
 2. Then you may navigate to different views using the navigation bar:
     a. Retail Investor View
+    
     b. Financial Analyst View (1)
+    
     c. Financial Analyst View (2)
+    
     d. Company Management View
 
 
